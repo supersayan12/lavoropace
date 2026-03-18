@@ -89,7 +89,8 @@ if pagina == "Lista Monumenti":
 
     monumento = st.selectbox(
         "Seleziona un monumento",
-        list(coordinate_monumenti.keys())
+        list(coordinate_monumenti.keys()),
+        placeholder="Scegli il monumento"
     )
 
     st.header(monumento)
