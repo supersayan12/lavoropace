@@ -44,12 +44,7 @@ h1, h2, h3 {
     border: 1px solid rgba(128,128,128,0.15);
 }
 
-/* SIDEBAR */
-section[data-testid="stSidebar"] {
-    background-color: var(--secondary-background-color);
-}
-
-/* SIDEBAR */
+/* SIDEBAR MOBILE FIX */
 section[data-testid="stSidebar"] {
     background: rgba(17,24,39,0.95) !important;
     backdrop-filter: blur(10px);
@@ -72,7 +67,6 @@ section[data-testid="stSidebar"] * {
     padding: 6px;
 }
 
-            
 /* BOTTONI */
 .stButton > button {
     background-color: var(--primary-color);
@@ -99,6 +93,34 @@ section[data-testid="stSidebar"] * {
 /* TESTO GENERALE */
 p, li {
     color: var(--text-color);
+}
+
+/* MAPPA RESPONSIVE */
+iframe {
+    width: 100% !important;
+    border-radius: 15px;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+
+    .block-container {
+        padding-top: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    h1 {
+        font-size: 28px !important;
+    }
+
+    h2 {
+        font-size: 22px !important;
+    }
+
+    .card {
+        padding: 18px;
+    }
 }
 
 </style>
@@ -183,6 +205,7 @@ if pagina == "Home":
     """, unsafe_allow_html=True)
 
     if os.path.exists("vittoriano-altare-della-patria.png"):
+
         image = Image.open("vittoriano-altare-della-patria.png")
 
         st.image(
@@ -207,7 +230,7 @@ if pagina == "Lista Monumenti":
     end = coordinate_monumenti[monumento]
 
     # ---------------------------------------------------
-    # LAYOUT A COLONNE
+    # COLONNE RESPONSIVE
     # ---------------------------------------------------
 
     col1, col2 = st.columns([1, 1])
@@ -228,6 +251,7 @@ if pagina == "Lista Monumenti":
         nome_file = monumento.lower().replace(" ", "_") + ".png"
 
         if os.path.exists(nome_file):
+
             image = Image.open(nome_file)
 
             st.image(
@@ -301,6 +325,6 @@ if pagina == "Lista Monumenti":
 
         st_folium(
             mappa,
-            width=700,
+            use_container_width=True,
             height=500
         )
